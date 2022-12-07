@@ -1,6 +1,9 @@
 const router = require("express").Router()
 
 const Coaster = require('./../models/Coaster.model')
+const { saludo, saveCoaster } = require('../controllers/coaster.controller')
+
+
 
 router.get("/getAllCoasters", (req, res) => {
 
@@ -22,12 +25,8 @@ router.get("/getOneCoaster/:coaster_id", (req, res) => {
 })
 
 
-router.post("/saveCoaster", (req, res) => {
+router.post("/saveCoaster", saveCoaster)
 
-    Coaster
-        .create(req.body)
-        .then(response => res.json(response))
-        .catch(err => res.status(500).json(err))
-})
+router.get('/saludo', saludo)
 
 module.exports = router
